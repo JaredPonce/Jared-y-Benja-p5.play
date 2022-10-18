@@ -1,1 +1,33 @@
+let player, floor, paredIzq, paredDer, paredArr;
 
+function setup() {
+    noStroke()
+	createCanvas(600, 600);
+    world.gravity.y = 5;
+	player = new Sprite();
+    player.color = 'white'
+	player.diameter = 30;
+    floor = new Sprite(400, 600, 800, 40)
+    floor.color = 'white'
+    floor.collider = 'static'
+	paredIzq = new Sprite(0, 300, 40, 600);
+    paredIzq.color = 'white'
+    paredIzq.collider = 'static'
+	paredDer = new Sprite(600, 300, 40, 600);
+    paredDer.color = 'white'
+    paredDer.collider = 'static'
+	paredArr = new Sprite(300, 0, 600, 40);
+    paredArr.color = 'white'
+    paredArr.collider = 'static'
+    player.bounciness = 1;
+}
+function draw() {
+	background(0);
+  //player.vel.x = -x;
+  //player.vel.y = y;
+}
+ window.addEventListener('devicemotion', function(e) {
+  x = parseInt(e.accelerationIncludingGravity.x);
+  y = parseInt(e.accelerationIncludingGravity.y);
+  z = parseInt(e.accelerationIncludingGravity.z);
+});
