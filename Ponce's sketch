@@ -1,1 +1,56 @@
-hola
+//hardest world game uwu
+let player, floor, paredIzq, paredDer, paredArr;
+let obst, obst2, coin, area;
+
+function setup() {
+	createCanvas(600, 600);
+  strokeWeight(4)
+	area = new Sprite(50,550,80,80)
+    area.color = '#8AFF88'
+    player = new Sprite(50, 550, 20, 20);
+    player.color = 'red'
+    player.overlaps(area)
+    floor = new Sprite(400, 600, 800, 40)
+    floor.collider = 'static'
+    floor.color = 'white'
+	paredIzq = new Sprite(0, 300, 40, 600);
+    paredIzq.collider = 'static'
+    paredIzq.color = 'white'
+	paredDer = new Sprite(600, 300, 40, 600);
+    paredDer.collider = 'static'
+    paredDer.color = 'white'
+	paredArr = new Sprite(300, 0, 600, 40);
+    paredArr.collider = 'static'
+    paredArr.color = 'white'
+    obst = new Sprite(150, 480, 8, 200);
+    obst.diameter = 20
+    obst.color = '#26f0CB'
+    obst.velocity.y = 1
+    obst2 = new Sprite(246, 375, 200, 8);
+    obst2.diameter = 20
+    obst2.color = '#26f0CB'
+    obst2.collider = 'static'
+    obst2.velocity.y = 1;
+    coin = new Sprite()
+    coin.diameter = 20
+    coin.color = '#DDDD1B'
+    
+  
+}
+function draw() {
+	background('#AF9FF6');
+  
+ if (obst.colliding(floor)) {
+		obst.velocity.y = -1;
+	};
+  
+  if (obst.colliding(paredArr)) {
+		obst.velocity.y = 1;
+	};
+    
+}
+ window.addEventListener('devicemotion', function(e) {
+  x = parseInt(e.accelerationIncludingGravity.x);
+  y = parseInt(e.accelerationIncludingGravity.y);
+  z = parseInt(e.accelerationIncludingGravity.z);
+});
