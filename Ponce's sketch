@@ -1,53 +1,77 @@
-//hardest world game uwu
-let player, floor, paredIzq, paredDer, paredArr;
-let obst, obst2, coin, area;
+//hardest game uwu
 
-function setup() {
+let obst, obst2, coin, area,pasto;
+
+function setup() { 
 	createCanvas(600, 600);
-  strokeWeight(4)
-	area = new Sprite(50,550,80,80)
-    area.color = '#8AFF88'
-    player = new Sprite(50, 550, 20, 20);
-    player.color = 'red'
-    player.overlaps(area)
+  
+    //area
+	area = new Sprite(50,250,80,200);
+    area.color = '#8AFF88';
+  
+    //coso gris
+    pasto = new Sprite(150,310,100,80);
+    pasto.color = '#D4CAFF';
+  
+    //jugador
+    player = new Sprite(60, 250, 20, 20);
+    player.color = 'red';
+    player.overlaps(area);
+    player.overlaps(pasto);
+  
+    //piso
     floor = new Sprite(400, 600, 800, 40)
     floor.collider = 'static'
-    floor.color = 'white'
+    strokeWeight(4)
+    floor.color = '#AF9FF6'
+  
+    //la pared de la izquierda
 	paredIzq = new Sprite(0, 300, 40, 600);
     paredIzq.collider = 'static'
-    paredIzq.color = 'white'
+    paredIzq.color = '#AF9FF6'
+  
+    //pared de la derecha
 	paredDer = new Sprite(600, 300, 40, 600);
     paredDer.collider = 'static'
-    paredDer.color = 'white'
-	paredArr = new Sprite(300, 0, 600, 40);
+    paredDer.color = '#AF9FF6'
+  
+    //pared de arriba
+	paredArr = new Sprite(300, 50, 600, 200);
     paredArr.collider = 'static'
-    paredArr.color = 'white'
+    paredArr.color = '#AF9FF6'
+  
+    //obstaculo 1
     obst = new Sprite(150, 480, 8, 200);
     obst.diameter = 20
     obst.color = '#26f0CB'
     obst.velocity.y = 1
+    obst.overlaps(pasto)
+  
+    //obstaculo 2
     obst2 = new Sprite(246, 375, 200, 8);
     obst2.diameter = 20
     obst2.color = '#26f0CB'
     obst2.collider = 'static'
     obst2.velocity.y = 1;
+  
+    //moneda
     coin = new Sprite()
     coin.diameter = 20
     coin.color = '#DDDD1B'
-    
-  
+
+
 }
 function draw() {
 	background('#AF9FF6');
-  
+
  if (obst.colliding(floor)) {
 		obst.velocity.y = -1;
 	};
-  
+
   if (obst.colliding(paredArr)) {
 		obst.velocity.y = 1;
 	};
-    
+
 }
  window.addEventListener('devicemotion', function(e) {
   x = parseInt(e.accelerationIncludingGravity.x);
