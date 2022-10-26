@@ -1,9 +1,13 @@
 //hardest game uwu
 
-let obst, obst2, coin, area,pasto;
+let obst, obst2, coin, area,pasto, bloquesDeColores,bloquesDeColores2;
 
 function setup() { 
 	createCanvas(600, 600);
+  
+    //bloquesXD
+    bloquesDeColores = new Sprite(250,310,100,80);
+    bloquesDeColores.color = '#F0EBFF'
   
     //area
 	area = new Sprite(50,250,80,200);
@@ -51,26 +55,47 @@ function setup() {
     obst2 = new Sprite(246, 375, 200, 8);
     obst2.diameter = 20
     obst2.color = '#26f0CB'
-    obst2.collider = 'static'
     obst2.velocity.y = 1;
+    obst2.overlaps(bloquesDeColores);
   
     //moneda
     coin = new Sprite()
     coin.diameter = 20
     coin.color = '#DDDD1B'
-
-
+    coin.overlaps(bloquesDeColores);
+    
+    
+    bloquesDeColores2 = new Sprite(350,310,100,80)
+    bloquesDeColores2.color = '#D4CAFF';
 }
 function draw() {
 	background('#AF9FF6');
 
  if (obst.colliding(floor)) {
 		obst.velocity.y = -1;
-	};
+	}
 
   if (obst.colliding(paredArr)) {
 		obst.velocity.y = 1;
-	};
+	}
+  
+   if (obst2.colliding(floor)) {
+		obst2.velocity.y = -1;
+	}
+
+  if (obst2.colliding(paredArr)) {
+		obst2.velocity.y = 1;
+	}
+  
+  if(player.colliding(obst)) {
+    player.x = 60;
+    player.y = 250;
+  }
+  
+  if(player.colliding(obst2)) {
+    player.x = 60;
+    player.y = 250;
+  }
 
 }
  window.addEventListener('devicemotion', function(e) {
