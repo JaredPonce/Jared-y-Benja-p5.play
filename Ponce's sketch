@@ -1,8 +1,7 @@
 //noMeBocheProfe
 //hardest game uwu
 
-let obst, obst2, coin, area, img, area2, x ,y;
-
+let obst, obst2, coin, area, img, area2, x ,y, o;
 
 function setup() { 
   
@@ -19,12 +18,6 @@ function setup() {
     //area
 	area = new Sprite(50,250,80,200);
     area.color = '#8AFF88';
-  
-    //jugador
-    player = new Sprite(60, 250, 20, 20);
-    player.color = 'red';
-    player.overlaps(area);
-    player.overlaps(area2);
   
     //piso
     floor = new Sprite(400, 600, 800, 40)
@@ -69,8 +62,14 @@ function setup() {
     coin.color = '#DDDD1B'
     coin.x = 400;
     coin.y = 400;
-    
+  
+    //jugador
+    player = new Sprite(60, 250, 20, 20);
+    player.color = 'red';
+    player.overlaps(area);
+    player.overlaps(area2);
 }
+
 function draw() {
 	background('#AF9FF6');
 
@@ -94,6 +93,8 @@ function draw() {
     player.x = 60;
     player.y = 250;
     
+    o = -1;
+    
     coin.x = 400;
     coin.y = 400;
   }
@@ -102,6 +103,8 @@ function draw() {
     player.x = 60;
     player.y = 250;
     
+    o = -1;
+    
     coin.x = 400;
     coin.y = 400;
   }
@@ -109,14 +112,16 @@ function draw() {
     coin.x = 700;
     coin.y = 700;
   }  
-
-  if(player.colliding(area2)){
-  textSize(32) 
-  text('Level Complete', 300, 300); 
+  if(player.overlaps(area2) && coin.x === 700){
+    o = + 1;
   }
   
+  if(o == 1){
+    textSize(32);
+    text('Level Complete',300,300)
+  }
   
-
+  player.moveTowards(mouse.x, mouse.y);
 }
  window.addEventListener('devicemotion', function(e) {
   x = parseInt(e.accelerationIncludingGravity.x);
