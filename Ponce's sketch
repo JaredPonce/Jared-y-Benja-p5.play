@@ -1,7 +1,7 @@
 //noMeBocheProfe
 //hardest game uwu
 
-let obst, obst2, coin, area, img, area2, x ,y, o;
+let obst, obst2, coin, area, img, area2, x ,y, o, VDO;
 
 function setup() { 
   
@@ -97,6 +97,8 @@ function draw() {
     
     coin.x = 400;
     coin.y = 400;
+    
+  
   }
   
   if(player.colliding(obst2)) {
@@ -121,6 +123,19 @@ function draw() {
     text('Level Complete',300,300)
   }
   
+  if(player.colliding(obst)){
+    VDO = +1;
+  }
+  
+  if(VDO == 1){
+  obst.collider = 'static'
+    VDO = 0;
+  }
+  
+  if(VDO == 0){
+    obst.collider = 'dynamic'
+  }
+ 
   player.moveTowards(mouse.x, mouse.y);
 }
  window.addEventListener('devicemotion', function(e) {
