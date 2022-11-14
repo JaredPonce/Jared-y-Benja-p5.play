@@ -1,21 +1,57 @@
 //noMeBocheProfe
 //hardest game uwu
 
-let obst, obst2, coin, area, img, area2, x ,y, o, VDO, block1;
+let floor, obst, obst2, obst3,obst4 , coin,coin2, area, img,x,y, area2, o, VDO, block1;
 
-let imageBackGround, IDP;
+let panelPrincipio;
+
+let imageBackGround, IDP, block2, block3, block4, block5, blockStart, blockConNombre;
 
 function preload(){
   imageBackGround = loadImage('https://play-lh.googleusercontent.com/OnDwQAzziT-qesY5yw73fNn2G10fPicQo6sBV94XTFggbiMx4179OSwIR6NOW0FWBOc');
+  
   
   IDP = loadImage('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/763e4a4f-0453-48cd-96ef-d2aba6b7d98d/d9onyft-5fd9c060-a307-479f-a802-1c55899faf0b.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzc2M2U0YTRmLTA0NTMtNDhjZC05NmVmLWQyYWJhNmI3ZDk4ZFwvZDlvbnlmdC01ZmQ5YzA2MC1hMzA3LTQ3OWYtYTgwMi0xYzU1ODk5ZmFmMGIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.YG5Te7VYjaXpu4n8MEXZZtoqLzku74rwGcQ1RyBdSGo')
   
 }
 
 function setup() { 
+    
+    panelPrincipio = new Sprite(320,320,650,650);
+    panelPrincipio.color = '#AF9FF6'
+    panelPrincipio.collider = 'static';
+    panelPrincipio.layer = 4
   
-     
-      
+    blockConNombre = new Sprite(300,300,220,30);
+    blockConNombre.collider = 'static';
+    blockConNombre.color = 'white'
+    blockConNombre.textSize = 15;
+    blockConNombre.text = "El Juego mas Dificil Del Mundo";
+    
+  
+    block2 = new Sprite(300,50,300,1);
+    block2.collider = 'static';
+    block2.overlaps(panelPrincipio);
+    
+    block3 = new Sprite(300,100,300,1);
+    block3.collider = 'static';
+    block3.overlaps(panelPrincipio);
+  
+    block4 = new Sprite(150,75,1,50);
+    block4.collider = 'static'
+    block4.overlaps(panelPrincipio);
+    
+    block5 = new Sprite(450,75,1,50);
+    block5.collider = 'static'
+    block5.overlaps(panelPrincipio);  
+  
+    blockStart = new Sprite(400,70,50,20);
+    blockStart.layer = 5;
+    blockStart.color = 'white'
+    blockStart.textSize = 15;
+    blockStart.text = "Start";
+    blockStart.overlaps(panelPrincipio);
+    
   
 	createCanvas(650, 650);
     
@@ -23,45 +59,91 @@ function setup() {
     area2 = new Sprite(560,490,100,80);
     area2.color = '#8AFF88'
     area2.collider = 'static'
-    
+    area2.layer = 2;
+    area2.overlaps(panelPrincipio);
     
     //area
 	area = new Sprite(60,250,80,200);
     area.color = '#8AFF88';
+    area.layer = 2;  
+    area.overlaps(panelPrincipio);
+    area.collider = 'static'
   
     //piso
     floor = new Sprite(307, 450, 406, 1)
     floor.collider = 'static'
     strokeWeight(4)
     floor.color = '#AF9FF6'
+    floor.layer = 2;
+    floor.overlaps(panelPrincipio);  
   
     //la pared de la izquierda
 	paredIzq = new Sprite(100, 400, 1, 100);
     paredIzq.collider = 'static'
     paredIzq.color = '#AF9FF6'
+    paredIzq.layer = 2;
+    paredIzq.overlaps(panelPrincipio);  
   
     //pared de la derecha
 	paredDer = new Sprite(610, 325, 1, 245);
     paredDer.collider = 'static'
     paredDer.color = '#AF9FF6'
+    paredDer.layer = 2;
+    paredDer.overlaps(panelPrincipio);  
   
     //pared de arriba
 	paredArr = new Sprite(355, 200, 510, 1);
     paredArr.collider = 'static'
     paredArr.color = '#AF9FF6'
+    paredArr.layer = 2;
+    paredArr.overlaps(panelPrincipio);
   
     //obstaculo 1
     obst = new Sprite(280, 300, 300, 200);
     obst.diameter = 20
     obst.color = '#2243E9'
-    obst.velocity.y = 4
+    obst.velocity.y = 4;
+    obst.layer = 2;
+    obst.overlaps(panelPrincipio);  
+    obst.overlaps(blockConNombre);
   
     //obstaculo 2
     obst2 = new Sprite(400, 375, 200, 8);
-    obst2.diameter = 20
+    obst2.diameter = 20;
     obst2.color = '#2243E9'
     obst2.velocity.y = 4;
+    obst2.layer = 2;
+    obst2.overlaps(panelPrincipio);
+    obst2.overlaps(blockConNombre);
+  
+    //obstaculo 3
+    obst3 = new Sprite(200,400,200,8);
+    obst3.diameter = 20;
+    obst3.color = '#2243E9'
+    obst3.velocity.x = -4;
+    obst3.layer = 2;
+    obst3.overlaps(panelPrincipio);
     
+    //obstaculo 4
+    obst4 = new Sprite(200,280,200,8);
+    obst4.diameter = 20;
+    obst4.color = '#2243E9'
+    obst4.velocity.x = -4;
+    obst4.layer = 2;
+    obst4.overlaps(panelPrincipio);
+    
+    
+    
+    //moneda 2
+  
+    coin2 = new Sprite()
+    coin2.collider = 'static'
+    coin2.diameter = 20
+    coin2.color = '#DDDD1B'
+    coin2.x = 540;
+    coin2.y = 250;
+    coin2.layer = 2;
+    coin2.overlaps(panelPrincipio);
     
   
     //moneda
@@ -72,19 +154,46 @@ function setup() {
     coin.color = '#DDDD1B'
     coin.x = 340;
     coin.y = 340;
+    coin.layer = 2;
+    coin.overlaps(panelPrincipio);
   
     //jugador
-    player = new Sprite(60, 250, 20, 20);
+    player = new Sprite(200, 60, 20, 20);
     player.color = 'red';
     player.overlaps(area);
     player.overlaps(area2);
     player.overlaps(obst);
     player.overlaps(obst2);
+    player.overlaps(obst3);
+    player.overlaps(obst4);
+    player.overlaps(panelPrincipio);
+    player.layer = 5;
+    
+  
+  obst3.overlaps(obst);
+    obst3.overlaps(obst2);
+    obst.overlaps(obst2);
+    obst.overlaps(obst3);
+    obst4.overlaps(obst)
+    obst4.overlaps(obst2)
 }
 
 function draw() {
-	background('#AF9FF6');
+	
+  background('#AF9FF6');
 
+  if(player.colliding(blockStart)){
+   blockConNombre.x = 1100
+  blockStart.x = 1200
+  block2.x = 1300
+  block3.x = 1400
+  block4.x = 1500
+  block5.x = 1600
+  panelPrincipio.x = 2000
+    player.x = 60;
+    player.y = 250;
+  }
+  
  if (obst.colliding(floor)) {
 		obst.velocity.y = -4;
 	}
@@ -101,6 +210,21 @@ function draw() {
 		obst2.velocity.y = 4;
 	}
   
+  if(obst3.colliding(paredDer)){
+    obst3.velocity.x = -4;
+  }
+  
+  if(obst3.colliding(paredIzq)) {
+    obst3.velocity.x = 4;
+  }
+  
+  if(obst4.colliding(area)){
+    obst4.velocity.x = 4;
+  }
+    if(obst4.colliding(paredDer)){
+    obst4.velocity.x = -4;
+  }
+  
   if(player.overlaps(obst)) {
     player.x = 60;
     player.y = 250;
@@ -110,7 +234,9 @@ function draw() {
     coin.x = 340;
     coin.y = 340;
     
-  
+    
+    coin2.x = 540;
+    coin2.y = 250;
   }
   
   if(player.overlaps(obst2)) {
@@ -121,7 +247,39 @@ function draw() {
     
     coin.x = 340;
     coin.y = 340;
+    
+    coin2.x = 540;
+    coin2.y = 250;
   }
+  
+  if(player.overlaps(obst3)) {
+    player.x = 60;
+    player.y = 250;
+    
+    o = -1;
+    
+    coin.x = 540;
+    coin.y = 250;
+    
+    coin2.x = 340;
+    coin2.y = 340;
+    
+  }
+  
+   if(player.overlaps(obst4)) {
+    player.x = 60;
+    player.y = 250;
+    
+    o = -1;
+    
+    coin.x = 540;
+    coin.y = 250;
+    
+    coin2.x = 340;
+    coin2.y = 340;
+    
+  }
+  
   if(player.overlaps(coin)){
     coin.x = 700;
     coin.y = 700;
@@ -135,6 +293,17 @@ function draw() {
     text('Level Complete',300,300)
   }
   
+  if(player.overlaps(coin2)){
+    coin2.x = 800;
+    coin2.y = 800;
+  }  
+  
+  
+  if(o == 1){
+    textSize(32);
+    text('Level Complete',300,300)
+  }
+  
   if(player.overlaps(area2) && coin.x === 700){
     
   }
@@ -142,12 +311,16 @@ function draw() {
   image(imageBackGround,100,200);
   
   //image(IDP, 200,200,400,300);
- 
-  player.moveTowards(mouse.x, mouse.y);
+  
+  
+  //player.moveTowards(mouse.x, mouse.y);
+  
+  player.vel.x = -x;
+  player.vel.y = y;
+  
 }
  window.addEventListener('devicemotion', function(e) {
   x = parseInt(e.accelerationIncludingGravity.x);
   y = parseInt(e.accelerationIncludingGravity.y);
   z = parseInt(e.accelerationIncludingGravity.z);
 });
-
